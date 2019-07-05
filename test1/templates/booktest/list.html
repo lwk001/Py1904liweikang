@@ -12,8 +12,16 @@
 <!--<a href="/detail/2/">详细2</a>-->
 <!--<a href="/detail/3/">详细3</a>-->
 {% for book in books %}
-<li><a href="/detail/{{book.id}}/">{{book.title}}</a></li>
+{#<li><a href="/detail/{{book.id}}/">{{book.title}}</a></li>#}
+<li><a href="{% url 'booktest:detail' book.id %}">{{book.title}}--------{{book.pub_date}}</a> <a class="btn btn-danger"href="{% url 'booktest:deletebook' book.id %}">删除</a></li>
 {% endfor %}
+<a class="btn btn-success" href="{% url 'booktest:addbook' %}">添加书籍</a>
+
+<a class="btn btn-success" href="{% url 'booktest:index' %}">跳转首页</a>
+
+
+
+<!--图片轮播-->
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -23,28 +31,29 @@
     </ol>
 
     <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="/static/img/1.jpg" alt="...">
-            <div class="carousel-caption">
-                ...
+    <div id="container">
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <div style="text-align: center"><img src="/static/img/1.jpg" alt="..."></div>
+                <div class="carousel-caption">
+                    ...
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <img src="/static/img/2.jpg" alt="...">
-            <div class="carousel-caption">
-                ...
+            <div class="item">
+                <div style="text-align: center"><img src="/static/img/2.jpg" alt="..."></div>
+                <div class="carousel-caption">
+                    ...
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <img src="/static/img/3.jpg" alt="...">
-            <div class="carousel-caption">
-                ...
+            <div class="item">
+                <div style="text-align: center"><img src="/static/img/3.jpg" alt="..."></div>
+                <div class="carousel-caption">
+                    ...
+                </div>
             </div>
+            ...
         </div>
-        ...
     </div>
-
     <!-- Controls -->
     <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

@@ -8,8 +8,10 @@ class BookInfo(models.Model):
         return self.title
 class HeroInfo(models.Model):
     name = models.CharField(max_length=20)
-    gender = models.BooleanField(default=True)
+    # gender = models.BooleanField(default=True)
+    gender = models.CharField(max_length=5, choices=(("man", "男"), ("woman", "女")))
     content = models.CharField(max_length=100)
+    type = models.CharField(max_length=5, choices=(("good", "正义"), ("bad", "邪恶")), default="good")
     book = models.ForeignKey(BookInfo, on_delete=models.CASCADE)
     def __str__(self):
         return self.name

@@ -5,18 +5,23 @@
     <title>Title</title>
 </head>
 <body>
+<div style="background-color: gray">
 <h2>详情页</h2>
 <h3>当前书籍为：{{book.title}}</h3>
 {% if book.heroinfo_set.count %}
 <h3>拥有角色</h3>
 <ul>
     {% for hero in book.heroinfo_set.all %}
-        <li>{{hero.name}}---{{hero.content}}</li>
+        <li>{{hero.name}}---{{hero.gender}}---{{hero.content}}---{{hero.type}} <a href="{% url 'booktest:deletehero' hero.id %}">删除</a></li>
     {% endfor %}
 </ul>
+
 {% else %}
     <h3>没有角色</h3>
 {% endif %}
-<a href="/">跳转首页</a>
+<a href="{% url 'booktest:addhero' book.id %}">添加英雄</a>
+{#<a href="/">跳转首页</a>#}
+<a href="{% url 'booktest:index' %}">跳转首页</a>
+    </div>
 </body>
 </html>

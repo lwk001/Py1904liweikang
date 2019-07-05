@@ -23,5 +23,5 @@ from django.http import HttpResponse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url('', include('booktest.urls'))
+    url('', include('booktest.urls', namespace="booktest"))
 ]

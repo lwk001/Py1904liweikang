@@ -10,9 +10,9 @@
 <body>
 <h2>首页</h2>
 <h3>当前用户：<span class="username">{{username}}</span></h3>
-<img src="/static/img/1.jpg">
+<img src="/static/img/l1.jpg">
 <br>
-<a href="/list/">列表</a>
-
+{#<a href="/list/">列表</a>#}
+<a href="{% url 'booktest:list' %}">列表</a>
 </body>
 </html>
