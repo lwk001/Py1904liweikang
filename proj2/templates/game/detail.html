@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色信息页</title>
+</head>
+<body>
+<div class="container">
+    <h2>当前游戏为：{{game.name}}</h2>
+    {% for role in game.role_set.all %}
+    <li>{{role.name}}----{{role.skill}}</li>
+    {% endfor %}
+    <a href="{% url 'game:index' %}">返回首页</a>
+</div>
+</body>
+</html>

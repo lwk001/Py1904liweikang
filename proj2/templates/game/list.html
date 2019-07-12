@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色列表页</title>
+</head>
+<body>
+<div class="container">
+    <h2>游戏菜单</h2>
+    <ul>
+        {% for g in games %}
+        <li><a href="{% url 'game:detail' g.id %}">{{g.name}}</a></li>
+        {% empty %}
+        <li>游戏菜单为空</li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>
