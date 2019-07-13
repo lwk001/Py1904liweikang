@@ -1,23 +1,27 @@
 {% extends 'blog/base.html' %}
+{% load my_func %}
+{% load cache %}
 {% block title %}
     <title>首页</title>
 {% endblock %}
 {% block left %}
+<!--{% cache 60 carousel %}-->
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         {% for a in ads %}
         {% if forloop.counter == 1 %}
+        <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
         {% else %}
+        <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}"></li>
         {% endif %}
         {% endfor %}
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
 
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner img-responsive-center" role="listbox">
+        {% getads as ads %}
         {% for a in ads %}
         {% if forloop.counter == 1 %}
         <div class="item active">
@@ -47,6 +51,7 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
+<!--{% endcache %}-->
 {% for article in page.object_list %}
 <article class="post post-{{article.id}}">
     <header class="entry-header">
@@ -65,7 +70,7 @@
     <div class="entry-content clearfix">
         {{article.body|safe}}
         <div class="read-more cl-effect-14">
-            <a href="#" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+            <a href="{% url 'blog:single' article.id %}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
         </div>
     </div>
 </article>
@@ -81,13 +86,13 @@
 <div class="pagination col-md-11">
     <ul>
         {% if page.has_previous %}
-        <li class="col-md-2"><a href="/?page={{ page.previous_page_number }}">上一页</a></li>
+        <li class="col-md-2"><a href="?page={{ page.previous_page_number }}">上一页</a></li>
         {% endif %}
         {% for i in page.paginator.page_range %}
             {% if i == page.number %}
-                <li class="col-md-1"><a href="/?page={{i}}">{{ i }}</a></li>
+                <li class="col-md-1"><a href="?page={{i}}">{{ i }}</a></li>
             {% else %}
-                <li class="col-md-1"><a href="/?page={{i}}">{{ i }}</a></li>
+                <li class="col-md-1"><a href="?page={{i}}">{{ i }}</a></li>
             {% endif %}
 
         {% endfor %}
@@ -101,7 +106,7 @@
         <li class="col-md-1"><a href="">...</a></li>
         {% endcomment %}
         {% if page.has_next %}
-        <li class="col-md-2"><a href="/?page={{ page.next_page_number }}">下一页</a></li>
+        <li class="col-md-2"><a href="?page={{ page.next_page_number }}">下一页</a></li>
         {% endif %}
     </ul>
 </div>

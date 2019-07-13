@@ -70,7 +70,7 @@
 
 	<br><br><br><br><br>
 	<h1>使用AJAX添加评论</h1>
-	<form class="comment-form">
+	<div class="comment-form">
 		<div class="row">
 			<div class="col-md-4">
 				<label for="id_name">名字：</label>
@@ -90,7 +90,7 @@
 				<button class="comment-btn" id="btn-commit">发表</button>
 			</div>
 		</div>    <!-- row -->
-	</form>
+	</div>
 	<div class="comment-list-panel">
 		<h3>评论列表，共 <span>{{article.comment_set.count}}</span> 条评论</h3>
 		<ul class="comment-list list-unstyled" id="commentlist2">
@@ -121,11 +121,11 @@
 					"csrfmiddlewaretoken": "{{csrf_token}}",
 				},
 				success:function (data) {
-					$("#commentlist2").append('' +
-							'<li class="comment-item">' +
-							'<span class="nickname">{{data.name}}</span>' +
-							'<time class="submit-date" datetime="2012-11-09T23:15:57+00:00">{{data.create_time}}</time>' +
-							'<div class="text">{{data.content}}</div></li>');
+					$("#id_name").val(''),
+					$("#id_email").val(''),
+					$("#id_url").val(''),
+					$("#id_content").val(''),
+					$("#commentlist2").append('<li class="comment-item"><span class="nickname">'+ data.name +'</span><time class="submit-date" datetime="2012-11-09T23:15:57+00:00">'+ data.create_time +'</time><div class="text">'+data.content+'</div></li>');
 
 				}
 			})
