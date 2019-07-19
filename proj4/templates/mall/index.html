@@ -7,12 +7,11 @@
 <section class="slider-area">
             <div class="container">
                 <div class="row">
-                    {% for a in ads %}
-                    {% if forloop.counter == 1 %}
                     <div class="col-md-12">
                         <div class="bend niceties preview-2">
                             <div id="ensign-nivoslider" class="slides">
-
+                                {% for a in ads %}
+                                {% if forloop.counter == 1 %}
                                 <img src="/media/{{a.img}}" alt="" title="#slider-caption-1" />
                                 {% else %}
                                 <img src="/media/{{a.img}}" alt="" title="#slider-caption-2" />
