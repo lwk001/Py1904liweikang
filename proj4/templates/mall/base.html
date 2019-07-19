@@ -68,10 +68,14 @@
                             <div class="header_right_area">
                                 <ul>
                                     <li>
-                                        <a class="account" href="#">我的账户</a>
+                                        {% if username %}
+                                        当前用户：{{username}} <a class="account" href="{% url 'mall:logout' %}">退出</a>
+                                        {% else %}
+                                        <a href="{% url 'mall:login' %}">未登录</a>
+                                        {% endif %}
                                     </li>
                                     <li>
-                                        <a class="wishlist" href="#">购物清单</a>
+                                        <a class="wishlist" href="#">收藏</a>
                                     </li>
                                     <li>
                                         <a class="Shopping cart" href="#">购物车</a>
@@ -153,7 +157,7 @@
                                             <div class="cart-button">
                                                 <ul>
                                                     <li>
-                                                        <a href="#">View my cart <i class="fa fa-angle-right"></i></a>
+                                                        <a href="#">查看购物车 <i class="fa fa-angle-right"></i></a>
                                                     </li>
                                                     <li>
                                                         <a href="#">结算 <i class="fa fa-angle-right"></i></a>
@@ -385,12 +389,11 @@
                                                 <nav>
                                                     <ul>
                                                         <li><a href="{% url 'mall:index' %}">首页</a></li>
-														<li><a href="about-us.html">关于我们</a></li>
-														<li><a href="cart.html">购物车</a></li>
+														<li><a href="{% url 'mall:about' %}">关于我们</a></li>
+														<li><a href="{% url 'mall:cart' %}">购物车</a></li>
 														<li><a href="{% url 'mall:list' %}">商品列表</a></li>
-														<li><a href="my.account.html">账户</a></li>
-														<li><a href="simple-product.html">商品详情</a></li>
-														<li><a href="contact-us.html">联系我们</a></li>
+														<li><a href="{% url 'mall:account' %}">账户</a></li>
+														<li><a href="{% url 'mall:contact' %}">联系我们</a></li>
                                                     </ul>
                                                 </nav>
                                             </div>

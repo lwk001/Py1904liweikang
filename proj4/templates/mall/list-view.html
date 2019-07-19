@@ -9,7 +9,7 @@
                     <div class="col-md-12">
                         <div class="shop_menu">
                             <ul class="cramb_area cramb_area_5">
-                                <li><a href="index.html">首页 /</a></li>
+                                <li><a href="{% url 'mall:index' %}">首页 /</a></li>
                                 <li class="br-active"><a href="#">商店</a></li>
                             </ul>
                         </div>
@@ -220,8 +220,8 @@
                         </div>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane" id="home">
-                                {% for product in products %}
                                 <div class="row">
+                                    {% for product in products %}
                                     <div class="col-md-4 col-sm-4">
                                         <div class="all-pros all-pros-2 all-pros-latest">
                                             <div class="single_product single_product_2">
@@ -283,13 +283,12 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                     {% endfor %}
                                 </div>
-                                {% endfor %}
                             </div>
                             <div role="tabpanel" class="tab-pane active" id="profile">
-                                {% for product in products %}
                                 <div class="row">
+                                     {% for product in products %}
                                     <div class="col-md-12">
                                         <div class="all-pros br-ntf">
                                             <div class="row">
@@ -299,7 +298,7 @@
                                                             <span>热销</span>
                                                         </div>
                                                         <div class="sinle_pic sngl-pc sinle_pic_2xd">
-                                                            <a href="#">
+                                                            <a href="{% url 'mall:simple' product.id %}">
                                                             <img class="primary-img" src="/media/{{product.img}}" alt="" />
                                                             <img class="secondary-img" src="/media/{{product.img}}" alt="" />
                                                             </a>
@@ -367,9 +366,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
-
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -472,7 +470,7 @@
                                 </div>
                                 <div class="elav_titel elav_titel_2">
                                     <div class="elv_heading elv_heading_therteen">
-                                        <h3>Donec non est at</h3>
+                                        <h3>{{product.name}}</h3>
                                     </div>
                                     <div class="elav_info">
                                         <div class="price_box price_box_pb">
@@ -500,7 +498,6 @@
                                     </div>
                                 </div>
                             </div>
-                             {% endfor %}
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Ads(models.Model):
@@ -18,3 +19,6 @@ class Product(models.Model):
     price = models.IntegerField()
     update_time = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    views = models.IntegerField(default=0)
+class mallUser(User):
+    telephone = models.CharField(max_length=11, default="110")
