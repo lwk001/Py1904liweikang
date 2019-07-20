@@ -288,7 +288,7 @@
                             </div>
                             <div role="tabpanel" class="tab-pane active" id="profile">
                                 <div class="row">
-                                     {% for product in products %}
+                                    {% for product in products %}
                                     <div class="col-md-12">
                                         <div class="all-pros br-ntf">
                                             <div class="row">
@@ -462,6 +462,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="modal-product">
+                            {% for product in products  %}
                             <div class="row">
                                 <div class="new_port new_port_2">
                                     <div class="port_pix">
@@ -498,6 +499,9 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
+
+
                         </div>
                     </div>
                 </div>

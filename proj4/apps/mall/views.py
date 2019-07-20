@@ -29,7 +29,7 @@ class SimpleView(View):
     def get(self, request, id):
         username = request.COOKIES.get("username")
         # products = Product.objects.all()
-        products = get_list_or_404(Product, pk=id)
+        # products = get_list_or_404(Product, pk=id)
         product = get_object_or_404(Product, pk=id)
         product.views += 1
         product.save()
@@ -50,11 +50,11 @@ class CartView(View):
 class AboutView(View):
     def get(self, request):
         username = request.COOKIES.get("username")
-        return render(request, 'mall/about-us.html',locals())
+        return render(request, 'mall/about-us.html', locals())
 class ContactView(View):
     def get(self, request):
         username = request.COOKIES.get("username")
-        return render(request, 'mall/contact-us.html',locals())
+        return render(request, 'mall/contact-us.html', locals())
 class AccountView(View):
     def get(self, request):
         username = request.COOKIES.get("username")

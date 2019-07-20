@@ -21,7 +21,7 @@ def index(request):
     # else:
     #     return redirect(reverse("vote:login"))
 @checklogin
-def detail(request,id):
+def detail(request, id):
     try:
         question = Question.objects.get(pk=id)
     except Question.DoesNotExist:
@@ -32,17 +32,17 @@ def detail(request,id):
         return render(request, "vote/detail.html", locals())
     elif request.method == "POST":
         choiceid = request.POST.get("choice")
-        # choice = Choice.objects.get(pk=choiceid)
-        # choice.votes += 1
-        # choice.save()
-        Choice.objects.incresevotes(choiceid)
+        choice = Choice.objects.get(pk=choiceid)
+        choice.votes += 1
+        choice.save()
+        # Choice.objects.incresevotes(choiceid)
         # 没有重定向，刷新浏览器会再次发起post请求，结果出错
         # return render(request, "vote/result.html", {"question":question})
         return redirect(reverse("vote:result", args=(id,)))
 @checklogin
-def result(request,id):
+def result(request, id):
     # question = Question.objects.get(pk=id)
-    get_object_or_404(Question, pk=id)
+    question = get_object_or_404(Question, pk=id)
     return render(request, "vote/result.html", locals())
 def login(request):
     if request.method == 'GET':
