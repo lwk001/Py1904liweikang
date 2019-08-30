@@ -70,12 +70,12 @@ def logout(request):
     response = redirect(reverse("mall:login"))
     response.delete_cookie("username")
     return response
-# def register(request):
-#     if request.method == "POST":
-#         username = request.POST.get("username")
-#         password = request.POST.get("password")
-#         user = mallUser.objects.create_user(username=username, password=password)
-#         if user:
-#             return redirect(reverse("mall:login"))
-#         else:
-#             return render(request, 'mall/my.account.html', {"errors": "注册失败"})
+def register(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = mallUser.objects.create_user(username=username, password=password)
+        if user:
+            return redirect(reverse("mall:login"))
+        else:
+            return render(request, 'mall/my.account.html', {"errors": "注册失败"})

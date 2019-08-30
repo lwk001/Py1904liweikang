@@ -74,8 +74,8 @@
                     <div class="frm_content">
                         <h2>注册</h2>
                     </div>
-                    <form method="post" action="">
-
+                    <form method="post" action="{% url 'mall:register' %}">
+                        {% csrf_token %}
                         <div class="al_form-fields">
                             <p>
                                 <label>
